@@ -84,7 +84,7 @@ class MyGame(arcade.Window):
         os.chdir(file_path)
         # Name of map file to load
 
-        map_name = f"level_{self.level}.tmx"
+        map_name = f"map_{self.level}.tmx"
 
 
 
@@ -145,7 +145,7 @@ class MyGame(arcade.Window):
         self.scene.add_sprite_list_after("Player", LAYER_NAME_FOREGROUND)
 
         # Set up the player, specifically placing it at these coordinates.
-        image_source = "./kenney_pixel-platformer\Tiles\Characters\Tile_0000.png"
+        image_source = "./kenney_pixel-platformer\Tiles\Characters\chef.png"
         self.player_sprite = arcade.Sprite(image_source, CHARACTER_SCALING)
         self.player_sprite.center_x = PLAYER_START_X
         self.player_sprite.center_y = PLAYER_START_Y
