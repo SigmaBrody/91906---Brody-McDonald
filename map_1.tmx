@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="70" height="20" tilewidth="18" tileheight="18" infinite="0" nextlayerid="7" nextobjectid="1">
+ <tileset firstgid="1" source="pixel_normal.tsx"/>
+ <layer id="3" name="Background" width="70" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt0LsJACAMRVGnsLBzHEdxCwsH18JWUNB84B5IEx7hkRAAAAAAAPCtaxcwytpf8mX+tP/MtR93pVj5izVls4+iLfxI2gXwTF1zagDYXwYq
+  </data>
+ </layer>
+ <layer id="1" name="Platforms" width="70" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztl1EOgyAMhrnA3J508WrKq95BPcn0sJZkJoYUAqNDYvslf3wytB+VoFKCIAjpDJDRCneMkxYyW+GMywlnL8YJ5oObF/sMcc0JNy+T8nsQL+LljHjBES84d/TSQfrAaIXfX2OcuLw8IRXk8X2+SLv8L7672lXzErqvmnjdAyonJX5HNaRBEkLsGULtxVX7O/F9k1L+V3w1xta+BK6Zsn8fyArZfug1BsrZy+ElVy87G4WAxA==
+  </data>
+ </layer>
+ <layer id="6" name="Ladders" width="70" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt0EENADAMA7GCGojxRzQC+aeabASnmwEA6DntgKVuO2ApXzJfMl8yXwDgLw/swAGd
+  </data>
+ </layer>
+ <layer id="5" name="Dont Touch" width="70" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztw0ERAAAEADBZxNE/kAq+2O4WAQAAAABclYMf1eAGDR9sA80=
+  </data>
+ </layer>
+ <layer id="4" name="Keys" width="70" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztz0ENADAMxLADMv44h6HqY61mI0gSAABgmvM6oGl7f8VPrwDAPBcsnQBV
+  </data>
+ </layer>
+ <layer id="2" name="Foreground" width="70" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztzkERAAAEADCVdRBcA1/ubAkWAbPcDhxV2wEAAAAA3mtpegD2
+  </data>
+ </layer>
+</map>
