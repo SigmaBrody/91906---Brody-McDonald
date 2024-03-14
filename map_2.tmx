@@ -1,17 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="18" tileheight="18" infinite="0" nextlayerid="8" nextobjectid="1">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="18" tileheight="18" infinite="0" nextlayerid="9" nextobjectid="12">
  <tileset firstgid="1" source="pixel_normal.tsx"/>
  <tileset firstgid="232" source="pixel_tings.tsx"/>
  <layer id="3" name="Background" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt0EEKgCAURVFdU22l/W+hFUSTRmYgPMKCc8CBf6CXXwoAAMCYpc77ex+crVfjVp/PK3rvdmYzd3ijL3Y096/1tfRl9GX0ZfRl9GX08VcnSoMI5g==
+   eJzt0MEJwCAMRmGzSXeot87R/VdwhCJ4kqQEfkgpvA88GEQftgYAAAAAOafVvDOSc+9cX423xUt1RHfsc+dc1R+66JNc9r6fPv2/BPo09Gno09CnoU9DH/7qAWdiCXM=
   </data>
  </layer>
  <layer id="1" name="Platforms" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt0DkKgDAQQNFJq8exdYleQ3vv37phCgUZYiwUJfIf/CZkGSICAAAAACKVEbGBalVob+Nq3Z2dCu+bXPOh5dtxfmP/V/4TABCj3IgtPJWup9/qAw1bozqTGf9dZ+t3JOa6VL3LfPHMtwIsRRrs
+   eJzt1jkKgDAQQNGZVo9j6xK9jPdv3XAKq2CUoBAl/8FvAkMmXUQAAAAA5KZTERdZ7xU7P2jqV+dhsVZrS70IAAD4rFrFNSe11tt3jRdNR7M3UwX+jaHzJwq9r/TuZb//7LcDwawWug==
   </data>
  </layer>
+ <objectgroup id="8" name="Moving Platforms">
+  <object id="6" gid="252" x="288" y="432" width="18.6667" height="18">
+   <properties>
+    <property name="boundary_left" value="270.0"/>
+    <property name="boundary_right" value="288.0"/>
+    <property name="change_x" value="1"/>
+   </properties>
+  </object>
+  <object id="7" gid="253" x="306" y="432" width="18" height="18">
+   <properties>
+    <property name="boundary_left" value="288.0"/>
+    <property name="boundary_right" value="306.0"/>
+    <property name="change_x" value="1"/>
+   </properties>
+  </object>
+  <object id="8" gid="253" x="324" y="432" width="18" height="18">
+   <properties>
+    <property name="boundary_left" value="306.0"/>
+    <property name="boundary_right" value="324.0"/>
+    <property name="change_x" value="1"/>
+   </properties>
+  </object>
+  <object id="9" gid="253" x="342" y="432" width="18" height="18">
+   <properties>
+    <property name="boundary_left" value="324.0"/>
+    <property name="boundary_right" value="342.0"/>
+    <property name="change_x" value="1"/>
+   </properties>
+  </object>
+  <object id="10" gid="253" x="360" y="432" width="18" height="18">
+   <properties>
+    <property name="boundary_left" value="342.0"/>
+    <property name="boundary_right" value="360.0"/>
+    <property name="change_x" value="1"/>
+   </properties>
+  </object>
+  <object id="11" gid="254" x="378" y="432" width="18" height="18">
+   <properties>
+    <property name="boundary_left" value="360.0"/>
+    <property name="boundary_right" value="378.0"/>
+    <property name="change_x" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
  <layer id="6" name="Ladders" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eJztzrEJgFAUBMFnH9qrpWvwI9MVRJiBgwt3BgAA4P+ObWZfu//5dc+TvkZfo6/R1+hr9DX6Gn2NvuaNvguJqhM5

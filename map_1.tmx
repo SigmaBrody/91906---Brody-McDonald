@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="70" height="20" tilewidth="18" tileheight="18" infinite="0" nextlayerid="7" nextobjectid="1">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="70" height="20" tilewidth="18" tileheight="18" infinite="0" nextlayerid="8" nextobjectid="1">
  <tileset firstgid="1" source="pixel_normal.tsx"/>
  <layer id="3" name="Background" width="70" height="20">
   <data encoding="base64" compression="zlib">
@@ -31,4 +31,5 @@
    eJztzkERAAAEADCVdRBcA1/ubAkWAbPcDhxV2wEAAAAA3mtpegD2
   </data>
  </layer>
+ <objectgroup id="7" name="Moving Platforms"/>
 </map>

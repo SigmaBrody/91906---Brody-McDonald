@@ -7,7 +7,7 @@ import os
 # Constants
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 650
-SCREEN_TITLE = "Platformer"
+SCREEN_TITLE = "Pablo the Porky Pig"
 
 # Constants used to scale our sprites from their original size
 CHARACTER_SCALING = 2
@@ -16,7 +16,7 @@ SPRITE_PIXEL_SIZE = 18
 GRID_PIXEL_SIZE = SPRITE_PIXEL_SIZE * TILE_SCALING
 
 # Movement speed of player, in pixels per frame
-PLAYER_MOVEMENT_SPEED = 5
+PLAYER_MOVEMENT_SPEED = 6
 GRAVITY = 1
 PLAYER_JUMP_SPEED = 20
 
@@ -106,9 +106,9 @@ class MyGame(arcade.Window):
             LAYER_NAME_DONT_TOUCH: {
                 "use_spatial_hash": True,
             },
-            # LAYER_NAME_MOVING_PLATFORMS: {
-                # "use_spatial_hash": False,
-            # },
+            LAYER_NAME_MOVING_PLATFORMS: {
+                "use_spatial_hash": False,
+            },
             LAYER_NAME_LADDERS: {
                 "use_spatial_hash": True,
             },
@@ -165,7 +165,7 @@ class MyGame(arcade.Window):
 
         self.physics_engine = arcade.PhysicsEnginePlatformer(
             self.player_sprite,
-            # platforms=self.scene[LAYER_NAME_MOVING_PLATFORMS],
+            platforms=self.scene[LAYER_NAME_MOVING_PLATFORMS],
             gravity_constant=GRAVITY,
             ladders=self.scene[LAYER_NAME_LADDERS],
             walls=self.scene[LAYER_NAME_PLATFORMS]
@@ -231,7 +231,13 @@ class MyGame(arcade.Window):
 
         # Move the player with the physics engine
         self.physics_engine.update()
-    # Did the player fall off the map?
+
+
+        # Update walls, used with moving platforms
+        self.scene.update([LAYER_NAME_MOVING_PLATFORMS])
+
+
+        # Did the player fall off the map?
         if self.player_sprite.center_y < -100:
             self.player_sprite.center_x = PLAYER_START_X
             self.player_sprite.center_y = PLAYER_START_Y
