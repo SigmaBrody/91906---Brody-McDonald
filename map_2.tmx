@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="18" tileheight="18" infinite="0" nextlayerid="9" nextobjectid="12">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="18" tileheight="18" infinite="0" nextlayerid="9" nextobjectid="22">
  <tileset firstgid="1" source="pixel_normal.tsx"/>
  <tileset firstgid="232" source="pixel_tings.tsx"/>
  <layer id="3" name="Background" width="40" height="40">
@@ -13,46 +13,18 @@
   </data>
  </layer>
  <objectgroup id="8" name="Moving Platforms">
-  <object id="6" gid="252" x="288" y="432" width="18.6667" height="18">
+  <object id="16" gid="254" x="378" y="432" width="18" height="18">
    <properties>
-    <property name="boundary_left" value="270.0"/>
-    <property name="boundary_right" value="288.0"/>
-    <property name="change_x" value="1"/>
+    <property name="boundary_left" value="688"/>
+    <property name="boundary_right" value="788"/>
+    <property name="change_x" value="0.5"/>
    </properties>
   </object>
-  <object id="7" gid="253" x="306" y="432" width="18" height="18">
+  <object id="21" gid="253" x="360" y="432" width="18" height="18">
    <properties>
-    <property name="boundary_left" value="288.0"/>
-    <property name="boundary_right" value="306.0"/>
-    <property name="change_x" value="1"/>
-   </properties>
-  </object>
-  <object id="8" gid="253" x="324" y="432" width="18" height="18">
-   <properties>
-    <property name="boundary_left" value="306.0"/>
-    <property name="boundary_right" value="324.0"/>
-    <property name="change_x" value="1"/>
-   </properties>
-  </object>
-  <object id="9" gid="253" x="342" y="432" width="18" height="18">
-   <properties>
-    <property name="boundary_left" value="324.0"/>
-    <property name="boundary_right" value="342.0"/>
-    <property name="change_x" value="1"/>
-   </properties>
-  </object>
-  <object id="10" gid="253" x="360" y="432" width="18" height="18">
-   <properties>
-    <property name="boundary_left" value="342.0"/>
-    <property name="boundary_right" value="360.0"/>
-    <property name="change_x" value="1"/>
-   </properties>
-  </object>
-  <object id="11" gid="254" x="378" y="432" width="18" height="18">
-   <properties>
-    <property name="boundary_left" value="360.0"/>
-    <property name="boundary_right" value="378.0"/>
-    <property name="change_x" value="1"/>
+    <property name="boundary_left" value="668"/>
+    <property name="boundary_right" value="768"/>
+    <property name="change_x" value="0.5"/>
    </properties>
   </object>
  </objectgroup>

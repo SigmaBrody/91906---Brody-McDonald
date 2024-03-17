@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="70" height="20" tilewidth="18" tileheight="18" infinite="0" nextlayerid="8" nextobjectid="1">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="70" height="20" tilewidth="18" tileheight="18" infinite="0" nextlayerid="8" nextobjectid="2">
  <tileset firstgid="1" source="pixel_normal.tsx"/>
  <layer id="3" name="Background" width="70" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt0LsJACAMRVGnsLBzHEdxCwsH18JWUNB84B5IEx7hkRAAAAAAAPCtaxcwytpf8mX+tP/MtR93pVj5izVls4+iLfxI2gXwTF1zagDYXwYq
+   eJxjYBgFo2AUjIJRMApGwSgYBaNgFIwC+gEhIBZGwiID65xBA9SAWB0JawyscwYNsAJiayRsg0NdC91cNLhANxD34JEfbOGiSKJ6Yt0PVNeAzC+lkrn0AvQKly4S7Rlo4IlDXIyurhg6QGqgHTAKqAYyoZhYAAC9PgqJ
   </data>
  </layer>
  <layer id="1" name="Platforms" width="70" height="20">
@@ -28,8 +28,10 @@
  </layer>
  <layer id="2" name="Foreground" width="70" height="20">
   <data encoding="base64" compression="zlib">
-   eJztzkERAAAEADCVdRBcA1/ubAkWAbPcDhxV2wEAAAAA3mtpegD2
+   eJzt0EENACAMBMFqADyABoIpPCCcYoDvtclOcv/NmQF/Wx0Q1FEHAACANIqv+po6JJjp676hDgnofbPUEQAAIIULgDcCLg==
   </data>
  </layer>
- <objectgroup id="7" name="Moving Platforms"/>
+ <objectgroup id="7" name="Moving Platforms">
+  <object id="1" gid="45" x="653" y="415.5" width="18" height="18"/>
+ </objectgroup>
 </map>
