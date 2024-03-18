@@ -84,8 +84,7 @@ class MyGame(arcade.Window):
         os.chdir(file_path)
         # Name of map file to load
 
-        #map_name = f"map_{self.level}.tmx"
-        map_name = "map_2.tmx"
+        map_name = f"map_{self.level}.tmx"
 
 
 
