@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="18" tileheight="18" infinite="0" nextlayerid="8" nextobjectid="3">
+ <tileset firstgid="1" source="foody.tsx"/>
+ <layer id="1" name="Background" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwVABQlBaD40/WIASELMBMScQs0P5gwW4A7EHFuyJRa04Hd0FA+FAHIEFR2JRq05Hdw11gBzXo2BwAADfegYj
+  </data>
+ </layer>
+ <layer id="2" name="Platforms" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMAoQwBmIXbDgwQKCB9oBBACx7sMVzsjYdQDdF0IEDgViu0HuPmoA5LgajO4LRjKTFu4jJq3iS7+0dl8wkeqJ0T/qPvq4DwCgVjct
+  </data>
+ </layer>
+ <objectgroup id="4" name="Moving Platforms">
+  <object id="1" gid="63" x="468.091" y="360.455" width="18" height="18"/>
+  <object id="2" gid="25" x="450" y="252" width="18" height="18">
+   <properties>
+    <property name="boundary_bottom" value="200"/>
+    <property name="boundary_top" value="400"/>
+    <property name="change_y" value="0.5"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer id="6" name="Ladders" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20LL6AAAAA+BgyAAAE=
+  </data>
+ </layer>
+ <layer id="7" name="Keys" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20LL6AAAAA+BgyAAAE=
+  </data>
+ </layer>
+ <layer id="5" name="Dont Touch" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztw0EJAAAIBLDrY/9+fq+BIBssAQC4MxX4bwEIjgCC
+  </data>
+ </layer>
+ <layer id="3" name="Foreground" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGAb2By0A7gAJgA8S2UDyQIGeA7ccHXKDYlYpmilHRLBgIpZI5KkCsRiWzkAE13OcOxB5Q7EkF85ABNdwXDsQRUBxJBfOQwWB1HwDREgfI
+  </data>
+ </layer>
+</map>
