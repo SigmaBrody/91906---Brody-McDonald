@@ -24,6 +24,10 @@ PLAYER_JUMP_SPEED = 20
 PLAYER_START_X = 64
 PLAYER_START_Y = 225
 
+# Constants used to track if the player is facing left or right
+RIGHT_FACING = 0
+LEFT_FACING = 1
+
 # Layer Names from our TileMap
 LAYER_NAME_PLATFORMS = "Platforms"
 LAYER_NAME_COINS = "Coins"
@@ -32,6 +36,16 @@ LAYER_NAME_BACKGROUND = "Background"
 LAYER_NAME_DONT_TOUCH = "Dont Touch"
 LAYER_NAME_LADDERS = "Ladders"
 LAYER_NAME_MOVING_PLATFORMS = "Moving Platforms"
+
+
+def load_texture_pair(filename):
+    """
+    Load a texture pair, with the second being a mirror image.
+    """
+    return [
+        arcade.load_texture(filename),
+        arcade.load_texture(filename, flipped_horizontally=True),
+    ]
 
 class PlayerCharacter(arcade.Sprite):
     """Player Sprite"""
@@ -239,8 +253,8 @@ class MyGame(arcade.Window):
         self.scene.add_sprite_list_after("Player", LAYER_NAME_FOREGROUND)
 
         # Set up the player, specifically placing it at these coordinates.
-        image_source = "./kenney_pixel-platformer\Tiles\Characters\chef.png"
-        self.player_sprite = arcade.Sprite(image_source, CHARACTER_SCALING)
+
+        self.player_sprite = PlayerCharacter()
         self.player_sprite.center_x = PLAYER_START_X
         self.player_sprite.center_y = PLAYER_START_Y
         self.scene.add_sprite("Player", self.player_sprite)
