@@ -22,7 +22,7 @@ PLAYER_JUMP_SPEED = 20
 
 # Player starting position
 PLAYER_START_X = 64
-PLAYER_START_Y = 225
+PLAYER_START_Y = 425
 
 # Constants used to track if the player is facing left or right
 RIGHT_FACING = 0
@@ -38,17 +38,17 @@ LAYER_NAME_LADDERS = "Ladders"
 LAYER_NAME_MOVING_PLATFORMS = "Moving Platforms"
 
 
-'''
-    def load_texture_pair(filename):
-    
+def load_texture_pair(filename):
+    """
     Load a texture pair, with the second being a mirror image.
-    
+    """
     return [
         arcade.load_texture(filename),
         arcade.load_texture(filename, flipped_horizontally=True),
     ]
 
-    class PlayerCharacter(arcade.Sprite):
+
+class PlayerCharacter(arcade.Sprite):
     """Player Sprite"""
 
     def __init__(self):
@@ -71,24 +71,19 @@ LAYER_NAME_MOVING_PLATFORMS = "Moving Platforms"
         # --- Load Textures ---
 
         # Images from Kenney.nl's Asset Pack 3
-        main_path = "C:91906-Brody-McDonald\FreeKnight_v1\Colour2\Outline\120x80_gifs\_"
+        main_path = ".\FreeKnight_v1\Colour2\Outline\8_gifs\_"
 
         # Load textures for idle standing
-        self.idle_texture_pair = load_texture_pair(f"{main_path}_idle.png")
-        self.jump_texture_pair = load_texture_pair(f"{main_path}_jump.png")
-        self.fall_texture_pair = load_texture_pair(f"{main_path}_fall.png")
-
-        # Load textures for walking
-        self.walk_textures = []
-        for i in range(8):
-            texture = load_texture_pair(f"{main_path}_walk{i}.png")
-            self.walk_textures.append(texture)
+        self.idle_texture_pair = load_texture_pair(f"{main_path}_Idle.gif")
+        self.jump_texture_pair = load_texture_pair(f"{main_path}_Jump.gif")
+        self.fall_texture_pair = load_texture_pair(f"{main_path}_Fall.gif")
+        self.fall_texture_pair = load_texture_pair(f"{main_path}_Run.gif")
 
         # Load textures for climbing
         self.climbing_textures = []
-        texture = arcade.load_texture(f"{main_path}_climb0.png")
+        texture = arcade.load_texture(f"{main_path}_WallClimb.gif")
         self.climbing_textures.append(texture)
-        texture = arcade.load_texture(f"{main_path}_climb1.png")
+        texture = arcade.load_texture(f"{main_path}_WallClimbNoMovement.gif")
         self.climbing_textures.append(texture)
 
         # Set the initial texture
@@ -140,7 +135,6 @@ LAYER_NAME_MOVING_PLATFORMS = "Moving Platforms"
         self.texture = self.walk_textures[self.cur_texture][
             self.character_face_direction
         ]
-'''
 
 
 class MyGame(arcade.Window):
@@ -255,9 +249,7 @@ class MyGame(arcade.Window):
 
         # Set up the player, specifically placing it at these coordinates.
 
-        # self.player_sprite = PlayerCharacter()
-        image_source = "C:\\91906-Brody-McDonald\\kenney_pixel-platformer\\Tiles\\Characters\\chef.png"
-        self.player_sprite = arcade.Sprite(image_source, CHARACTER_SCALING)
+        self.player_sprite = PlayerCharacter()
         self.player_sprite.center_x = PLAYER_START_X
         self.player_sprite.center_y = PLAYER_START_Y
         self.scene.add_sprite("Player", self.player_sprite)
