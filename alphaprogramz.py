@@ -71,19 +71,24 @@ class PlayerCharacter(arcade.Sprite):
         # --- Load Textures ---
 
         # Images from Kenney.nl's Asset Pack 3
-        main_path = ".\FreeKnight_v1\Colour2\Outline\8_gifs\_"
+        main_path = "./Adventurer/Individual Sprites/adventurer-"
 
         # Load textures for idle standing
-        self.idle_texture_pair = load_texture_pair(f"{main_path}_Idle.gif")
-        self.jump_texture_pair = load_texture_pair(f"{main_path}_Jump.gif")
-        self.fall_texture_pair = load_texture_pair(f"{main_path}_Fall.gif")
-        self.fall_texture_pair = load_texture_pair(f"{main_path}_Run.gif")
+        self.idle_texture_pair = load_texture_pair(f"{main_path}idle-00.png")
+        self.jump_texture_pair = load_texture_pair(f"{main_path}jump-00.png")
+        self.fall_texture_pair = load_texture_pair(f"{main_path}fall-00.png")
+
+        # Load textures for walking
+        self.walk_textures = []
+        for i in range(6):
+            texture = load_texture_pair(f"{main_path}run-{i}.png")
+            self.walk_textures.append(texture)
 
         # Load textures for climbing
         self.climbing_textures = []
-        texture = arcade.load_texture(f"{main_path}_WallClimb.gif")
+        texture = arcade.load_texture(f"{main_path}crnr-clmb-00.png")
         self.climbing_textures.append(texture)
-        texture = arcade.load_texture(f"{main_path}_WallClimbNoMovement.gif")
+        texture = arcade.load_texture(f"{main_path}crnr-clmb-01.png")
         self.climbing_textures.append(texture)
 
         # Set the initial texture
