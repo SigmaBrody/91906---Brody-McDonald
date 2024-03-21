@@ -38,16 +38,17 @@ LAYER_NAME_LADDERS = "Ladders"
 LAYER_NAME_MOVING_PLATFORMS = "Moving Platforms"
 
 
-def load_texture_pair(filename):
-    """
+'''
+    def load_texture_pair(filename):
+    
     Load a texture pair, with the second being a mirror image.
-    """
+    
     return [
         arcade.load_texture(filename),
         arcade.load_texture(filename, flipped_horizontally=True),
     ]
 
-class PlayerCharacter(arcade.Sprite):
+    class PlayerCharacter(arcade.Sprite):
     """Player Sprite"""
 
     def __init__(self):
@@ -70,7 +71,7 @@ class PlayerCharacter(arcade.Sprite):
         # --- Load Textures ---
 
         # Images from Kenney.nl's Asset Pack 3
-        main_path = ":resources:images/animated_characters/male_person/malePerson"
+        main_path = "C:91906-Brody-McDonald\FreeKnight_v1\Colour2\Outline\120x80_gifs\_"
 
         # Load textures for idle standing
         self.idle_texture_pair = load_texture_pair(f"{main_path}_idle.png")
@@ -139,6 +140,7 @@ class PlayerCharacter(arcade.Sprite):
         self.texture = self.walk_textures[self.cur_texture][
             self.character_face_direction
         ]
+'''
 
 
 class MyGame(arcade.Window):
@@ -193,8 +195,7 @@ class MyGame(arcade.Window):
         os.chdir(file_path)
         # Name of map file to load
 
-        # map_name = f"map_{self.level}.tmx"
-        map_name = "map_3.tmx"
+        map_name = f"map_{self.level}.tmx"
 
 
         # Layer specific options are defined based on Layer names in a dictionary
@@ -244,7 +245,7 @@ class MyGame(arcade.Window):
 
         self.scene.add_sprite_list_after("Player", LAYER_NAME_FOREGROUND)
 
-
+        
         # Add Player Spritelist before "Foreground" layer. This will make the foreground
         # be drawn after the player, making it appear to be in front of the Player.
         # Setting before using scene.add_sprite allows us to define where the SpriteList
@@ -254,7 +255,9 @@ class MyGame(arcade.Window):
 
         # Set up the player, specifically placing it at these coordinates.
 
-        self.player_sprite = PlayerCharacter()
+        # self.player_sprite = PlayerCharacter()
+        image_source = "C:\\91906-Brody-McDonald\\kenney_pixel-platformer\\Tiles\\Characters\\chef.png"
+        self.player_sprite = arcade.Sprite(image_source, CHARACTER_SCALING)
         self.player_sprite.center_x = PLAYER_START_X
         self.player_sprite.center_y = PLAYER_START_Y
         self.scene.add_sprite("Player", self.player_sprite)

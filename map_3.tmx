@@ -3,12 +3,12 @@
  <tileset firstgid="1" source="foody.tsx"/>
  <layer id="1" name="Background" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGwVABQlBaD40/WIASELMBMScQs0P5gwW4A7EHFuyJRa04Hd0FA+FAHIEFR2JRq05Hdw11gBzXo2BwAADfegYj
+   eJxjYBgFo2AUDGaQz8CggMZfMDAuwQ4KGBgS0PgLBsYlqEAcSoPcx83AcACGCbkvivZOAwN1IJZngLhPgQESyQoQ/gJFLOq9oXQWlKaXO4kFXmh0Fi6FAwTQ3eeFS+EQAEJQWg+NP1iAEhCzATEnELND+YMFuAOxBxbsiUWtOBYxWoNwII7AgiOxqFWno7uGOkCO61EwOAAAjSQT5Q==
   </data>
  </layer>
  <layer id="2" name="Platforms" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMAoQwBmIXbDgwQKCB9oBBACx7sMVzsjYdQDdF0IEDgViu0HuPmoA5LgajO4LRjKTFu4jJq3iS7+0dl8wkeqJ0T/qPvq4DwCgVjct
+   eJxjYBgFo2AUjIJRMAoQwBmIXYjAAwWCgTiECDxQgFj3ERPOrgPoPmJwKBDbDXL3UQMgx9VgdB+ym2jhPmLLBFzpl9buI9dMbPpH3Ucf9wEAsXpVxQ==
   </data>
  </layer>
  <objectgroup id="4" name="Moving Platforms">
