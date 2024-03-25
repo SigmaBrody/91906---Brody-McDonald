@@ -71,7 +71,7 @@ class PlayerCharacter(arcade.Sprite):
         # --- Load Textures ---
 
         # Images from Kenney.nl's Asset Pack 3
-        main_path = "./Adventurer/Individual Sprites/adventurer-"
+        main_path = "./Assets/Characters/Adventurer/Individual Sprites/adventurer-"
 
         # Load textures for idle standing
         self.idle_texture_pair = load_texture_pair(f"{main_path}idle-00.png")
@@ -363,8 +363,11 @@ class MyGame(arcade.Window):
         # See if the user got to the end of the level
         if self.player_sprite.center_x >= self.end_of_map:
             # Advance to the next level
-            self.level = self.level + 1 
-            self.setup()
+            if self.level < 4:
+                self.level = self.level + 1 
+                self.setup()
+            else:
+                print("Thank you for playing")
 
 
         # Position the camera
