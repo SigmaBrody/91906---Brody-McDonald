@@ -371,7 +371,7 @@
  </layer>
  <layer id="5" name="Dont Touch" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJztw0EJAAAIBLDrY/9+fq+BIBssAQC4MxX4bwEIjgCC
+   eJztzjENAAAIwDD84N8fLwqAkDbZvwgA4KrcHhiQLeC/AtjWAK0=
   </data>
  </layer>
  <layer id="3" name="Foreground" width="40" height="20">
