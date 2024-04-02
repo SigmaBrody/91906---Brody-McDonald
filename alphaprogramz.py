@@ -1,6 +1,3 @@
-"""
-Platformer Game
-"""
 import arcade
 import os
 
@@ -41,6 +38,11 @@ LAYER_NAME_LADDERS = "Ladders"
 LAYER_NAME_MOVING_PLATFORMS = "Moving Platforms"
 LAYER_NAME_PLAYER = "Player"
 LAYER_NAME_ENEMY = "Enemy"
+
+# Game States
+GAME_RUNNING = 0
+GAME_INTRO = 1
+GAME_OVER = 2
 
 
 def load_texture_pair(filename):
@@ -144,8 +146,6 @@ class PlayerCharacter(arcade.Sprite):
         ]
 
 
-
-
 class MyGame(arcade.Window):
     """
     Main application class.
@@ -173,9 +173,11 @@ class MyGame(arcade.Window):
 
         self.tile_map = None
 
-        # Initialize lives count
-        self.lives_count = 3
+        # Initialize death count
+        self.death_count = 0
 
+        # Initialize life count
+        self.player_lives = 3
 
         # Our Scene Object
         self.scene = None
@@ -201,7 +203,8 @@ class MyGame(arcade.Window):
         # Level
         self.level = 1
 
-
+        # Game state
+        self.game_state = GAME_INTRO
 
         arcade.set_background_color(arcade.csscolor.CORNFLOWER_BLUE)
 
@@ -217,7 +220,6 @@ class MyGame(arcade.Window):
         # Name of map file to load
 
         map_name = f"map_{self.level}.tmx"
-
 
         # Layer specific options are defined based on Layer names in a dictionary
         layer_options = {
@@ -271,33 +273,64 @@ class MyGame(arcade.Window):
             walls=self.scene[LAYER_NAME_PLATFORMS]
         )
 
-    
+    def draw_intro_screen(self):
+        """Draw the introductory screen."""
+        arcade.draw_text("Welcome to Pablo the Porky Pig", SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 50, arcade.color.WHITE, 30, anchor_x="center")
+        arcade.draw_text("Press Space to Start", SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, arcade.color.WHITE, 20, anchor_x="center")
 
     def on_draw(self):
         """Render the screen."""
+        arcade.start_render()
 
-        # Clear the screen to the background color
-        self.clear()
+        if self.game_state == GAME_INTRO:
+            self.draw_intro_screen()
+            return
 
         # Draw the timer in the top left corner
         arcade.draw_text(f"Timer: {self.timer}", 10, self.height - 20, arcade.color.WHITE, 14)
 
         # Draw the life count in the top left corner
-        arcade.draw_text(f"Lives: {self.lives_count}", 10, self.height - 40, arcade.color.WHITE, 14)
+        arcade.draw_text(f"Lives: {self.player_lives}", 10, self.height - 40, arcade.color.WHITE, 14)
 
         # Activate the game camera
         self.camera.use()
 
-
         # Draw our Scene
-
         self.scene.draw(pixelated=True)
-
 
         # Activate the GUI camera before drawing GUI elements
         self.gui_camera.use()
 
+    def on_key_press(self, key, modifiers):
+        """Called whenever a key is pressed."""
+        if self.game_state == GAME_INTRO:
+            if key == arcade.key.SPACE:
+                self.game_state = GAME_RUNNING
+                self.setup()
+        else:
+            if key == arcade.key.UP or key == arcade.key.W:
+                self.up_pressed = True
+            elif key == arcade.key.DOWN or key == arcade.key.S:
+                self.down_pressed = True
+            elif key == arcade.key.LEFT or key == arcade.key.A:
+                self.left_pressed = True
+            elif key == arcade.key.RIGHT or key == arcade.key.D:
+                self.right_pressed = True
+            self.process_keychange()
 
+    def on_key_release(self, key, modifiers):
+        """Called when the user releases a key."""
+        if self.game_state == GAME_RUNNING:
+            if key == arcade.key.UP or key == arcade.key.W:
+                self.up_pressed = False
+                self.jump_needs_reset = False
+            elif key == arcade.key.DOWN or key == arcade.key.S:
+                self.down_pressed = False
+            elif key == arcade.key.LEFT or key == arcade.key.A:
+                self.left_pressed = False
+            elif key == arcade.key.RIGHT or key == arcade.key.D:
+                self.right_pressed = False
+            self.process_keychange()
 
     def process_keychange(self):
         """
@@ -333,36 +366,6 @@ class MyGame(arcade.Window):
         else:
             self.player_sprite.change_x = 0
 
-
-    def on_key_press(self, key, modifiers):
-        """Called whenever a key is pressed."""
-
-        if key == arcade.key.UP or key == arcade.key.W:
-            self.up_pressed = True
-        elif key == arcade.key.DOWN or key == arcade.key.S:
-            self.down_pressed = True
-        elif key == arcade.key.LEFT or key == arcade.key.A:
-            self.left_pressed = True
-        elif key == arcade.key.RIGHT or key == arcade.key.D:
-            self.right_pressed = True
-
-        self.process_keychange()
-
-    def on_key_release(self, key, modifiers):
-        """Called when the user releases a key."""
-
-        if key == arcade.key.UP or key == arcade.key.W:
-            self.up_pressed = False
-            self.jump_needs_reset = False
-        elif key == arcade.key.DOWN or key == arcade.key.S:
-            self.down_pressed = False
-        elif key == arcade.key.LEFT or key == arcade.key.A:
-            self.left_pressed = False
-        elif key == arcade.key.RIGHT or key == arcade.key.D:
-            self.right_pressed = False
-
-        self.process_keychange()
-
     def center_camera_to_player(self):
         screen_center_x = self.player_sprite.center_x - (self.camera.viewport_width / 2)
         screen_center_y = self.player_sprite.center_y - (
@@ -377,6 +380,9 @@ class MyGame(arcade.Window):
         self.camera.move_to(player_centered, 0.2)
 
     def on_update(self, delta_time):
+        """Update the game."""
+        if self.game_state != GAME_RUNNING:
+            return
 
         # Move the player with the physics engine
         self.physics_engine.update()
@@ -411,7 +417,6 @@ class MyGame(arcade.Window):
         if self.player_sprite.center_y < -100:
             self.player_sprite.center_x = PLAYER_START_X
             self.player_sprite.center_y = PLAYER_START_Y
-            self.lives_count -= 1
 
         # Did the player touch something they should not?
         if arcade.check_for_collision_with_list(
@@ -421,12 +426,12 @@ class MyGame(arcade.Window):
             self.player_sprite.change_y = 0
             self.player_sprite.center_x = PLAYER_START_X
             self.player_sprite.center_y = PLAYER_START_Y
-            self.lives_count -= 1
+            self.death_count += 1
 
         # Check if player died 3 times
-        if self.lives_count == 0:
+        if self.death_count >= 3:
             # Display game over screen
-            self.game_over()
+            self.game_state = GAME_OVER
 
         # See if the user got to the end of the level
         if self.player_sprite.center_x >= self.end_of_map:
@@ -453,7 +458,6 @@ class MyGame(arcade.Window):
 def main():
     """Main function"""
     window = MyGame()
-    window.setup()
     arcade.run()
 
 
