@@ -173,11 +173,8 @@ class MyGame(arcade.Window):
 
         self.tile_map = None
 
-        # Initialize death count
-        self.death_count = 0
-
-        # Initialize life count
-        self.player_lives = 3
+        # Initialize lives count
+        self.lives_count = 3
 
         # Our Scene Object
         self.scene = None
@@ -275,8 +272,11 @@ class MyGame(arcade.Window):
 
     def draw_intro_screen(self):
         """Draw the introductory screen."""
-        arcade.draw_text("Welcome to Pablo the Porky Pig", SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 50, arcade.color.WHITE, 30, anchor_x="center")
-        arcade.draw_text("Press Space to Start", SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, arcade.color.WHITE, 20, anchor_x="center")
+        arcade.draw_text("Welcome to Pablo the Porky Pig", SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 100, arcade.color.WHITE, 30, anchor_x="center")
+        arcade.draw_text("Instructions:", SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 50, arcade.color.WHITE, 20, anchor_x="center")
+        arcade.draw_text("- Use arrow keys or WASD to move", SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 20, arcade.color.WHITE, 16, anchor_x="center")
+        arcade.draw_text("- Reach the end of the map to advance", SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 10, arcade.color.WHITE, 16, anchor_x="center")
+        arcade.draw_text("Press Space to Start", SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 50, arcade.color.WHITE, 20, anchor_x="center")
 
     def on_draw(self):
         """Render the screen."""
@@ -290,7 +290,7 @@ class MyGame(arcade.Window):
         arcade.draw_text(f"Timer: {self.timer}", 10, self.height - 20, arcade.color.WHITE, 14)
 
         # Draw the life count in the top left corner
-        arcade.draw_text(f"Lives: {self.player_lives}", 10, self.height - 40, arcade.color.WHITE, 14)
+        arcade.draw_text(f"Lives: {self.lives_count}", 10, self.height - 40, arcade.color.WHITE, 14)
 
         # Activate the game camera
         self.camera.use()
@@ -417,6 +417,8 @@ class MyGame(arcade.Window):
         if self.player_sprite.center_y < -100:
             self.player_sprite.center_x = PLAYER_START_X
             self.player_sprite.center_y = PLAYER_START_Y
+            self.lives_count -= 1
+
 
         # Did the player touch something they should not?
         if arcade.check_for_collision_with_list(
@@ -426,24 +428,31 @@ class MyGame(arcade.Window):
             self.player_sprite.change_y = 0
             self.player_sprite.center_x = PLAYER_START_X
             self.player_sprite.center_y = PLAYER_START_Y
-            self.death_count += 1
+            self.lives_count -= 1
 
         # Check if player died 3 times
-        if self.death_count >= 3:
-            # Display game over screen
-            self.game_state = GAME_OVER
+        if self.lives_count == 0:
+            self.game_over()
 
         # See if the user got to the end of the level
         if self.player_sprite.center_x >= self.end_of_map:
             # Advance to the next level
-            if self.level < 4:
+            if self.level == 3:
+                self.game_state = GAME_OVER
+                self.congratulations_screen()
+            else:
                 self.level = self.level + 1
                 self.setup()
-            else:
-                print("Thank you for playing")
 
         # Position the camera
         self.center_camera_to_player()
+
+    def congratulations_screen(self):
+        arcade.set_background_color(arcade.color.BLACK)
+        arcade.draw_text("Congratulations!", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, arcade.color.WHITE, 50, anchor_x="center")
+        arcade.finish_render()  # Ensure everything is drawn
+        arcade.pause(3)  # Pause for 3 seconds before exiting the game
+        arcade.close_window()
 
     def game_over(self):
         arcade.set_background_color(arcade.color.BLACK)
