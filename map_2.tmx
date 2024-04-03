@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="18" tileheight="18" infinite="0" nextlayerid="9" nextobjectid="24">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="18" tileheight="18" infinite="0" nextlayerid="9" nextobjectid="24">
  <tileset firstgid="1" name="pixel_normal" tilewidth="24" tileheight="24" tilecount="231" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0">
@@ -1048,7 +1048,7 @@
  </layer>
  <layer id="1" name="Platforms" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt1jkKgDAQQNGZVo9j6xK9jPdv3XAKq2CUoBAl/8FvAkMmXUQAAAAA5KZTERdZ7xU7P2jqV+MLFmu1ttSLAACQsVrFNSe11tt3jRdNR7M3UwX+jaHzJwq9r/TuZb//7LcD5y4Wug==
+   eJzt1rsOQDAYhuF2ZXItVodyM+5/VcQ/mEpJ41DifZJ3kTT9YqpSAAAAAO6U6dgL1mrZZAJrnELPty/8D3jeII3SFHsIAAA/Vmhlyo0q6eq7up36JeucyT3vRt/3MxJ9XOrcy77v7JsB2xQWzA==
   </data>
  </layer>
  <objectgroup id="8" name="Moving Platforms">
@@ -1065,14 +1065,9 @@
    eJztzrEJgFAUBMFnH9qrpWvwI9MVRJiBgwt3BgAA4P+ObWZfu//5dc+TvkZfo6/R1+hr9DX6Gn2NvuaNvguJqhM5
   </data>
  </layer>
- <layer id="7" name="Keys" width="40" height="40">
-  <data encoding="base64" compression="zlib">
-   eJzt1DERAAAIxLAXgn+dbDjgGEgUdGoCAADAN3UdAMDwZIAdDeI/ADk=
-  </data>
- </layer>
  <layer id="2" name="Dont Touch" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztzrEJACAMRNGkECfQ1VzPJe0dQBDhwKT4D6656psBAAAAALIZbjO64aZ6dMEdfRr6NPRp6NPQp6FPk72vC33rw4qf36vmMcvetwGenSJv
+   eJztzrEJwDAMRFGpCJ7A2SgzZL0s6d5tIOAYDiQV/8E1V30zAAAAABGu14A/t9uT3bDSPLtgjT4NfRr6NPRp6NPQp6nedwp9I2CHf79d3XNWvW8CicIjPg==
   </data>
  </layer>
  <layer id="5" name="Foreground" width="40" height="40">

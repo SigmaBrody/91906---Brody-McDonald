@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="90" height="20" tilewidth="18" tileheight="18" infinite="0" nextlayerid="8" nextobjectid="4">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="90" height="20" tilewidth="18" tileheight="18" infinite="0" nextlayerid="8" nextobjectid="4">
  <tileset firstgid="1" name="foody" tilewidth="18" tileheight="18" tilecount="112" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0">
@@ -341,16 +341,15 @@
  </tileset>
  <layer id="1" name="Background" width="90" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt1LEKwkAMBuBMSlcXHYtLN19DrXSuddAsLvWl+qhmiFBCWhF6V7z+H/yEHAd3ZAgRAAAAwHTuRN1YD9N4EOWm7+b5SdrYzJkH5nwL/5Uk7bTylzlftLZaMe/fFFpZ5lxJ/YTNnEtTW4IQ7JzLoYtAz0jvbLQeTL8UsXbqXrKSZJK19ksSY6ceJScnZ+fuNsJ/5tDfqa9Ab9SSq5PGuVs4ZwD/oL9DACBdb8XwFGY=
+   eJzt1LEKwkAMBuBMSlcXHcWlm6+htjjXdtDM9aX6qGaIUEKqFHpXev0/+AkpBw0ZQgQAAAAwnSdR96uHabyIjqbv5pkkbWz2zAN7bsKPkqSDVv6z51JrqxX7HifXyrLnu9Rv2Oy5MLUlCMHuuRh6CNHstJ5NvxaxbupJspFkkq32axLjpl4kVyc35+0+wjxz6N/Ud6B/VJKHk9p5mzvfAJagf0MAIF0fQoQUAQ==
   </data>
  </layer>
  <layer id="2" name="Platforms" width="90" height="20">
   <data encoding="base64" compression="zlib">
-   eJztlUESQ0AQRd0AJ8AyK3KBbMIJyBa5/yXyLVI1C8n0qEl38F/VWxq/f/WQJIQQQgghxJKLdQAjClg6VoZZCHlzh63HTilLDRt4VXqfJj0cPD7M0smR7Etrlk6/5xFOcIbPiOdK5li0ur9H2WdpzxKXeW8G+c7Ycwzcu/OLnlOYOeZRUn/nH3t2M+15n0P3JbRn6b/10/f9KD3H7HZt3q3nrz3PntmzD/asw5YeXjJvfdg=
+   eJztlUESQ0AQRd0AJ8AyK3KBbMIJyBa5/yXyLVI1i8j0qEl38F/VWzK/f/WQJIQQQgghxJKLdQAjClg6VoZZCHlzh63HTilLDRt4VTpPkx4OHh9m6eRI9qU1S6ff8wgnOMNnxPdK5li0ur9H2WdpzxKXeW8G+c7Ycwzcu/OLnlOYOeZRUn/nH3t2M+15n0P3ZUvP0v/rp2/7UXqO2e3avKFnrD3LntmzD/asw5aeX1+Xe1g=
   </data>
  </layer>
  <objectgroup id="4" name="Moving Platforms">
-  <object id="1" gid="63" x="468.091" y="360.455" width="18" height="18"/>
   <object id="2" gid="25" x="450" y="252" width="18" height="18">
    <properties>
     <property name="boundary_bottom" value="200"/>
@@ -364,11 +363,6 @@
    eJztwQEBAAAAgiD/r25IQAEAAAAAAAAvBhwgAAE=
   </data>
  </layer>
- <layer id="7" name="Keys" width="90" height="20">
-  <data encoding="base64" compression="zlib">
-   eJztwQEBAAAAgiD/r25IQAEAAAAAAAAvBhwgAAE=
-  </data>
- </layer>
  <layer id="5" name="Dont Touch" width="90" height="20">
   <data encoding="base64" compression="zlib">
    eJztzjEKACAMBMH8J/7/fWksbBSLgAgzsMV1FwEAAPxizHYbgLN8fYBruQQAQK8C8q8BXQ==
@@ -376,7 +370,7 @@
  </layer>
  <layer id="3" name="Foreground" width="90" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt0EEOQDAUhOGewgnEKVip4ACCOAL3X+uiiZWoeMpr/i+ZnY6XMQYAAAAAAEA3+/UBCVgevi9dKh+cWwO/2169In0hO1ufRvC/mWDXH9Xm2O3ufoPQDblLIdSlSeh+Eju3Lp1PL9CnScydR5fJZxbo04Sd47jabwePLwvl
+   eJzt0MEJgDAQRNEUYxl6MqIWICqWoP2fzWHBkxhxE9nwH8wtWYZxDgAAAAAAwDb/d4ECbB//1yGNBPf2yHdH0hbli9nZS7rEXUrSumu3t/tNSh0qpTvWxO6nsXMfMkhGhXuW5Nx5Dlkkq8I9S9g5j6f9TjJgC6k=
   </data>
  </layer>
 </map>

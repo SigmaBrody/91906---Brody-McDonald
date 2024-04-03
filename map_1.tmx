@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="70" height="20" tilewidth="18" tileheight="18" infinite="0" nextlayerid="8" nextobjectid="2">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="70" height="20" tilewidth="18" tileheight="18" infinite="0" nextlayerid="8" nextobjectid="2">
  <tileset firstgid="1" name="pixel_normal" tilewidth="24" tileheight="24" tilecount="231" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0">
@@ -703,7 +703,7 @@
  </layer>
  <layer id="1" name="Platforms" width="70" height="20">
   <data encoding="base64" compression="zlib">
-   eJztl1EOgyAMhrnA3J508WrKq95BPcn0sJZkJoYUAqNDYvslf3wytB+VoFKCIAjpDJDRCneMkxYyW+GMywlnL8YJ5oObF/sMcc0JNy+T8nsQL+LljHjBES84d/TSQfrAaIXfX2OcuLw8IRXk8X2+SLv8L7672lXzErqvmnjdAyonJX5HNaRBEkLsGULtxVX7O/F9k1L+V3w1xta+BK6Zsn8fyArZfug1BsrZy+ElVy87G4WAxA==
+   eJztl1EKwjAMhnsB3Z507Gqz7E3vsHkS3WFNQWGUpDQ2q8Pkh489laZf09I5Z7FYLOW5ArcI7QlOemCO0BzKiWYvwQnmQ5uX+A6h+kSbl8mlPZgX87KOecFjXvD8o5cBuGTiHf5+5TihvDTAETi8v63oKrdN6q32q37J3VcvPO8nUk72eI5OwBlhzBjLvUOkvVC1d4XjA3v5X0nVyK39njlnyf49gCewfLFWTiR7r4aXWmt5AXzcgSM=
   </data>
  </layer>
  <layer id="6" name="Ladders" width="70" height="20">
@@ -713,17 +713,12 @@
  </layer>
  <layer id="5" name="Dont Touch" width="70" height="20">
   <data encoding="base64" compression="zlib">
-   eJztw0ERAAAEADBZxNE/kAq+2O4WAQAAAABclYMf1eAGDR9sA80=
-  </data>
- </layer>
- <layer id="4" name="Keys" width="70" height="20">
-  <data encoding="base64" compression="zlib">
-   eJztz0ENADAMxLADMv44h6HqY61mI0gSAABgmvM6oGl7f8VPrwDAPBcsnQBV
+   eJzt0LsJACAQREFrsRcTsTDLtgLh8MMlM7D5Y0sBADK07AAAACBkZgdcqoGdGE/q8vTATvz6e2cBSrIGGA==
   </data>
  </layer>
  <layer id="2" name="Foreground" width="70" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt0EENACAMBMFqADyABoIpPCCcYoDvtclOcv/NmQF/Wx0Q1FEHAACANIqv+po6JJjp676hDgnofbPUEQAAIIULgDcCLg==
+   eJzt07EJgEAQRNGr4bQHrUFsxAaUC02NrcCK3QXD8dJZ2HkwGN7ywVJE+k72AcFs3/emXiEiktPDPiCI3XaAZXexD+iotsE2Et6O3GWxTbaZ8HbkLs7brIR3o3dhURdMXTB1wdQF8y4NLDt1wf7+oxe5MA7a
   </data>
  </layer>
  <objectgroup id="7" name="Moving Platforms">
