@@ -10,7 +10,6 @@ SCREEN_TITLE = "Big Red In The Hood"
 CHARACTER_SCALING = 2
 TILE_SCALING = 2
 SPRITE_PIXEL_SIZE = 18
-GRID_PIXEL_SIZE = SPRITE_PIXEL_SIZE * TILE_SCALING
 
 # Movement speed of player, in pixels per frame
 PLAYER_MOVEMENT_SPEED = 6
@@ -20,9 +19,6 @@ PLAYER_JUMP_SPEED = 20
 # Player starting position
 PLAYER_START_X = 64
 PLAYER_START_Y = 425
-
-ENEMY_START_X = 100
-ENEMY_START_Y = 425
 
 # Constants used to track if the player is facing left or right
 RIGHT_FACING = 0
@@ -37,11 +33,26 @@ LAYER_NAME_DONT_TOUCH = "Dont Touch"
 LAYER_NAME_LADDERS = "Ladders"
 LAYER_NAME_MOVING_PLATFORMS = "Moving Platforms"
 LAYER_NAME_PLAYER = "Player"
-LAYER_NAME_ENEMY = "Enemy"
 
 # Game States
 GAME_RUNNING = 0
 GAME_INTRO = 1
+
+# Info Screen Times
+END_PAUSE = 3
+
+# Camera Speed
+CENTER_SPEED = 0.8
+
+# Texture Numbers
+CLIMBING = 4
+
+# How many lifes the player starts with
+LIVES_COUNT = 3
+
+# Map Ends
+GRID_PIXEL_SIZE = SPRITE_PIXEL_SIZE * TILE_SCALING
+MAP_END_Y = -100
 
 
 def load_texture_pair(filename):
@@ -75,7 +86,8 @@ class PlayerCharacter(arcade.Sprite):
         self.is_on_ladder = False
 
         # Sets main path for smaller line lengths and its more efficent
-        main_path = "./Assets/Characters/Adventurer/Individual Sprites/adventurer-"
+        main_path = "./Assets/Characters/Adventurer/\
+Individual Sprites/adventurer-"
 
         # Load textures for idle standing
         self.idle_texture_pair = load_texture_pair(f"{main_path}idle-00.png")
@@ -119,7 +131,8 @@ class PlayerCharacter(arcade.Sprite):
             if self.cur_texture > 5:
                 self.cur_texture = 0
         if self.climbing:
-            self.texture = self.climbing_textures[self.cur_texture // 4]
+            self.texture = self.climbing_textures[
+                self.cur_texture // CLIMBING]
             return
 
         # Jumping animation
@@ -175,7 +188,7 @@ class MyGame(arcade.Window):
         self.tile_map = None
 
         # Initialize lives count
-        self.lives_count = 3
+        self.lives_count = LIVES_COUNT
 
         # Our Scene Object
         self.scene = None
@@ -401,7 +414,7 @@ class MyGame(arcade.Window):
             screen_center_y = 0
         player_centered = screen_center_x, screen_center_y
 
-        self.camera.move_to(player_centered, 0.2)
+        self.camera.move_to(player_centered, CENTER_SPEED)
 
     def on_update(self, delta_time):
         """Update the game."""
@@ -421,11 +434,6 @@ class MyGame(arcade.Window):
         self.scene.update([LAYER_NAME_MOVING_PLATFORMS])
 
         # Update animations
-        if self.physics_engine.can_jump():
-            self.player_sprite.can_jump = False
-        else:
-            self.player_sprite.can_jump = True
-
         if self.physics_engine.is_on_ladder() and not self.physics_engine.can_jump():
             self.player_sprite.is_on_ladder = True
             self.process_keychange()
@@ -439,7 +447,7 @@ class MyGame(arcade.Window):
         )
 
         # Did the player fall off the map?
-        if self.player_sprite.center_y < -100:
+        if self.player_sprite.center_y < MAP_END_Y:
             self.player_sprite.center_x = PLAYER_START_X
             self.player_sprite.center_y = PLAYER_START_Y
             self.lives_count -= 1
@@ -479,8 +487,11 @@ class MyGame(arcade.Window):
         arcade.set_background_color(arcade.color.BLACK)
         arcade.draw_text("Congratulations!", SCREEN_WIDTH / 2, 
         SCREEN_HEIGHT / 2, arcade.color.WHITE, 50, anchor_x="center")
+        arcade.draw_text("You Win!", 
+        SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 50, 
+        arcade.color.WHITE, 26, anchor_x="center")
         arcade.finish_render()  
-        arcade.pause(3)
+        arcade.pause(END_PAUSE)
         # Closes the game window
         arcade.close_window()
 
@@ -492,8 +503,11 @@ class MyGame(arcade.Window):
         arcade.set_background_color(arcade.color.BLACK)
         arcade.draw_text("Game Over", SCREEN_WIDTH / 2, 
         SCREEN_HEIGHT / 2, arcade.color.WHITE, 50, anchor_x="center")
+        arcade.draw_text("Unlucky Uso", 
+        SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 50, 
+        arcade.color.WHITE, 26, anchor_x="center")
         arcade.finish_render()
-        arcade.pause(3)  
+        arcade.pause(END_PAUSE)  
         # Close the game window
         arcade.close_window()
 
