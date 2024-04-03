@@ -83,7 +83,7 @@ class PlayerCharacter(arcade.Sprite):
         self.fall_texture_pair = load_texture_pair(f"{main_path}fall-00.png")
 
         # Load textures for walking
-        self.wallk_textures = []
+        self.walk_textures = []
         for i in range(6):
             texture = load_texture_pair(f"{main_path}run-{i}.png")
             self.walk_textures.append(texture)
