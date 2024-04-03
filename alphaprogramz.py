@@ -4,7 +4,7 @@ import os
 # Constants
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 650
-SCREEN_TITLE = "Pablo the Porky Pig"
+SCREEN_TITLE = "Big Red In The Hood"
 
 # Constants used to scale our sprites from their original size
 CHARACTER_SCALING = 2
@@ -42,7 +42,6 @@ LAYER_NAME_ENEMY = "Enemy"
 # Game States
 GAME_RUNNING = 0
 GAME_INTRO = 1
-GAME_OVER = 2
 
 
 def load_texture_pair(filename):
@@ -75,6 +74,7 @@ class PlayerCharacter(arcade.Sprite):
         self.climbing = False
         self.is_on_ladder = False
 
+        # Sets main path for smaller line lengths and its more efficent
         main_path = "./Assets/Characters/Adventurer/Individual Sprites/adventurer-"
 
         # Load textures for idle standing
@@ -98,14 +98,12 @@ class PlayerCharacter(arcade.Sprite):
         # Set the initial texture
         self.texture = self.idle_texture_pair[0]
 
-        # Hit box will be set based on the first image used. If you want to specify
-        # a different hit box, you can do it like the code below.
-        # set_hit_box = [[-22, -64], [22, -64], [22, 28], [-22, 28]]
+        # Set hitbox
         self.hit_box = self.texture.hit_box_points
 
     def update_animation(self, delta_time: float = 1 / 60):
 
-        # Figure out if we need to flip face left or right
+        # Figure out what way the character is facing
         if self.change_x < 0 and self.character_face_direction == RIGHT_FACING:
             self.character_face_direction = LEFT_FACING
         elif self.change_x > 0 and self.character_face_direction == LEFT_FACING:
@@ -126,15 +124,18 @@ class PlayerCharacter(arcade.Sprite):
 
         # Jumping animation
         if self.change_y > 0 and not self.is_on_ladder:
-            self.texture = self.jump_texture_pair[self.character_face_direction]
+            self.texture = self.jump_texture_pair[
+                self.character_face_direction]
             return
         elif self.change_y < 0 and not self.is_on_ladder:
-            self.texture = self.fall_texture_pair[self.character_face_direction]
+            self.texture = self.fall_texture_pair[
+                self.character_face_direction]
             return
 
         # Idle animation
         if self.change_x == 0:
-            self.texture = self.idle_texture_pair[self.character_face_direction]
+            self.texture = self.idle_texture_pair[
+                self.character_face_direction]
             return
 
         # Walking animation
@@ -142,8 +143,7 @@ class PlayerCharacter(arcade.Sprite):
         if self.cur_texture > 5:
             self.cur_texture = 0
         self.texture = self.walk_textures[self.cur_texture][
-            self.character_face_direction
-        ]
+            self.character_face_direction]
 
 
 class MyGame(arcade.Window):
@@ -160,6 +160,7 @@ class MyGame(arcade.Window):
         file_path = os.path.dirname(os.path.abspath(__file__))
         os.chdir(file_path)
 
+        # Set timer values as zero
         self.timer = 0
         self.time_elapsed = 0
 
@@ -169,8 +170,8 @@ class MyGame(arcade.Window):
         self.up_pressed = False
         self.down_pressed = False
         self.jump_needs_reset = False
-        # Our TileMap Object
 
+        # Our TileMap Object
         self.tile_map = None
 
         # Initialize lives count
@@ -189,7 +190,8 @@ class MyGame(arcade.Window):
         self.camera = None
 
         # Adding Sounds
-        self.jump_sound = arcade.load_sound(":resources:sounds/jump1.wav")
+        self.jump_sound = arcade.load_sound(
+            ":resources:sounds/jump1.wav")
 
         # A Camera that can be used to draw GUI elements
         self.gui_camera = None
@@ -203,10 +205,14 @@ class MyGame(arcade.Window):
         # Game state
         self.game_state = GAME_INTRO
 
+        # Set background colour
         arcade.set_background_color(arcade.csscolor.CORNFLOWER_BLUE)
 
     def setup(self):
-        """Set up the game here. Call this function to restart the game."""
+        """
+        Set up the game here. 
+        Call this function to restart the game.
+        """
 
         # Set up the Cameras
         self.camera = arcade.Camera(self.width, self.height)
@@ -218,7 +224,7 @@ class MyGame(arcade.Window):
 
         map_name = f"map_{self.level}.tmx"
 
-        # Layer specific options are defined based on Layer names in a dictionary
+        # Layer specific options are defined based on Layer names
         layer_options = {
             LAYER_NAME_PLATFORMS: {
                 "use_spatial_hash": True,
@@ -241,15 +247,18 @@ class MyGame(arcade.Window):
         }
 
         # Read in the tiled map
-        self.tile_map = arcade.load_tilemap(map_name, TILE_SCALING, layer_options)
+        self.tile_map = arcade.load_tilemap(
+            map_name, TILE_SCALING, layer_options)
         self.end_of_map = self.tile_map.width * GRID_PIXEL_SIZE
 
         # Initialize Scene with our TileMap
         self.scene = arcade.Scene.from_tilemap(self.tile_map)
-        self.scene.add_sprite_list_after("Player", LAYER_NAME_FOREGROUND)
+        self.scene.add_sprite_list_after(
+            "Player", LAYER_NAME_FOREGROUND)
 
         # Add Player Spritelist before "Foreground" layer.
-        self.scene.add_sprite_list_after("Player", LAYER_NAME_FOREGROUND)
+        self.scene.add_sprite_list_after(
+            "Player", LAYER_NAME_FOREGROUND)
 
         # Set up the player
         self.player_sprite = PlayerCharacter()
@@ -272,25 +281,38 @@ class MyGame(arcade.Window):
 
     def draw_intro_screen(self):
         """Draw the introductory screen."""
-        arcade.draw_text("Welcome to Pablo the Porky Pig", SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 100, arcade.color.WHITE, 30, anchor_x="center")
-        arcade.draw_text("Instructions:", SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 50, arcade.color.WHITE, 20, anchor_x="center")
-        arcade.draw_text("- Use arrow keys or WASD to move", SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 20, arcade.color.WHITE, 16, anchor_x="center")
-        arcade.draw_text("- Reach the end of the map to advance", SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 10, arcade.color.WHITE, 16, anchor_x="center")
-        arcade.draw_text("Press Space to Start", SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 50, arcade.color.WHITE, 20, anchor_x="center")
+        arcade.draw_text("Welcome to Big Red In The Hood", 
+        SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 100, 
+        arcade.color.WHITE, 30, anchor_x="center")
+        arcade.draw_text("Instructions:", 
+        SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 50, 
+        arcade.color.WHITE, 20, anchor_x="center")
+        arcade.draw_text("- Use arrow keys or WASD to move", 
+        SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 20, 
+        arcade.color.WHITE, 16, anchor_x="center")
+        arcade.draw_text("- Reach the end of the map to advance", 
+        SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 10, 
+        arcade.color.WHITE, 16, anchor_x="center")
+        arcade.draw_text("Press Space to Start", 
+        SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 50, 
+        arcade.color.WHITE, 20, anchor_x="center")
 
     def on_draw(self):
         """Render the screen."""
         arcade.start_render()
 
+        # Runs the intro screen for the game
         if self.game_state == GAME_INTRO:
             self.draw_intro_screen()
             return
 
         # Draw the timer in the top left corner
-        arcade.draw_text(f"Timer: {self.timer}", 10, self.height - 20, arcade.color.WHITE, 14)
+        arcade.draw_text(f"Timer: {self.timer}", 10, 
+        self.height - 20, arcade.color.WHITE, 14)
 
         # Draw the life count in the top left corner
-        arcade.draw_text(f"Lives: {self.lives_count}", 10, self.height - 40, arcade.color.WHITE, 14)
+        arcade.draw_text(f"Lives: {self.lives_count}", 10, 
+        self.height - 40, arcade.color.WHITE, 14)
 
         # Activate the game camera
         self.camera.use()
@@ -336,7 +358,7 @@ class MyGame(arcade.Window):
         """
         Called when we change a key up/down or we move on/off a ladder.
         """
-        # Process up/down
+        # Process up/down while not on ladder
         if self.up_pressed and not self.down_pressed:
             if self.physics_engine.is_on_ladder():
                 self.player_sprite.change_y = PLAYER_MOVEMENT_SPEED
@@ -367,10 +389,12 @@ class MyGame(arcade.Window):
             self.player_sprite.change_x = 0
 
     def center_camera_to_player(self):
-        screen_center_x = self.player_sprite.center_x - (self.camera.viewport_width / 2)
+        """Centers camera to player character."""
+        screen_center_x = self.player_sprite.center_x - (
+            self.camera.viewport_width / 2)
         screen_center_y = self.player_sprite.center_y - (
-            self.camera.viewport_height / 2
-        )
+            self.camera.viewport_height / 2)
+
         if screen_center_x < 0:
             screen_center_x = 0
         if screen_center_y < 0:
@@ -387,10 +411,11 @@ class MyGame(arcade.Window):
         # Move the player with the physics engine
         self.physics_engine.update()
 
-        self.time_elapsed += delta_time  # Increment the time elapsed
-        if self.time_elapsed >= 1.0:  # Check if one second has elapsed
-            self.timer += 1  # Increment the timer
-            self.time_elapsed -= 1.0  # Reset the time elapsed
+        # Will increment the timer 
+        self.time_elapsed += delta_time  
+        if self.time_elapsed >= 1.0:  
+            self.timer += 1  
+            self.time_elapsed -= 1.0 
 
         # Update walls, used with moving platforms
         self.scene.update([LAYER_NAME_MOVING_PLATFORMS])
@@ -438,7 +463,6 @@ class MyGame(arcade.Window):
         if self.player_sprite.center_x >= self.end_of_map:
             # Advance to the next level
             if self.level == 3:
-                self.game_state = GAME_OVER
                 self.congratulations_screen()
             else:
                 self.level = self.level + 1
@@ -448,18 +472,28 @@ class MyGame(arcade.Window):
         self.center_camera_to_player()
 
     def congratulations_screen(self):
+        """
+        Will print a congratulations screen at the end of the game.
+        """
+        # Draws the congratulations screen. Will stay for 3 seconds
         arcade.set_background_color(arcade.color.BLACK)
-        arcade.draw_text("Congratulations!", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, arcade.color.WHITE, 50, anchor_x="center")
-        arcade.finish_render()  # Ensure everything is drawn
-        arcade.pause(3)  # Pause for 3 seconds before exiting the game
+        arcade.draw_text("Congratulations!", SCREEN_WIDTH / 2, 
+        SCREEN_HEIGHT / 2, arcade.color.WHITE, 50, anchor_x="center")
+        arcade.finish_render()  
+        arcade.pause(3)
+        # Closes the game window
         arcade.close_window()
 
     def game_over(self):
+        """
+        Game over screen for if the user dies 3 times.
+        """
+        # Draws the Game Over screen. Will stay for 3 seconds
         arcade.set_background_color(arcade.color.BLACK)
-        arcade.draw_text("Game Over", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, arcade.color.WHITE, 50, anchor_x="center")
-        arcade.finish_render()  # Ensure everything is drawn
-        arcade.pause(3)  # Pause for 3 seconds before exiting the game
-
+        arcade.draw_text("Game Over", SCREEN_WIDTH / 2, 
+        SCREEN_HEIGHT / 2, arcade.color.WHITE, 50, anchor_x="center")
+        arcade.finish_render()
+        arcade.pause(3)  
         # Close the game window
         arcade.close_window()
 
