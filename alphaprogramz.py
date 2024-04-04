@@ -492,7 +492,7 @@ class MyGame(arcade.Window):
         arcade.finish_render()  
         arcade.pause(END_PAUSE)
         # Closes the game window
-        arcade.close_window()
+        arcade.exit()
 
     def game_over(self):
         """
@@ -508,7 +508,7 @@ class MyGame(arcade.Window):
         arcade.finish_render()
         arcade.pause(END_PAUSE)  
         # Close the game window
-        arcade.close_window()
+        arcade.exit()
 
 
 def main():
