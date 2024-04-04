@@ -43,8 +43,10 @@ END_PAUSE = 3
 # Camera Speed
 CENTER_SPEED = 0.8
 
-# Texture Numbers
+# Animation Ranges
 CLIMBING = 4
+RUNNING = 6
+UPDATE_ANIMATIONS = 1 / 60
 
 # How many lifes the player starts with
 LIVES_COUNT = 3
@@ -98,7 +100,7 @@ IndividualSprites/adventurer-"
 
         # Load textures for walking
         self.walk_textures = []
-        for i in range(6):
+        for i in range(RUNNING):
             texture = load_texture_pair(f"{main_path}run-{i}.png")
             self.walk_textures.append(texture)
 
@@ -115,7 +117,7 @@ IndividualSprites/adventurer-"
         # Set hitbox
         self.hit_box = self.texture.hit_box_points
 
-    def update_animation(self, delta_time: float = 1 / 60):
+    def update_animation(self, delta_time: float = UPDATE_ANIMATIONS):
 
         # Figure out what way the character is facing
         if self.change_x < 0 and self.character_face_direction == RIGHT_FACING:
@@ -424,9 +426,9 @@ class MyGame(arcade.Window):
 
         # Will increment the timer 
         self.time_elapsed += delta_time  
-        if self.time_elapsed >= 1.0:  
+        if self.time_elapsed >= 1:  
             self.timer += 1  
-            self.time_elapsed -= 1.0 
+            self.time_elapsed -= 1 
 
         # Update walls, used with moving platforms
         self.scene.update([LAYER_NAME_MOVING_PLATFORMS])
@@ -468,7 +470,7 @@ class MyGame(arcade.Window):
 
         # See if the user got to the end of the level
         if self.player_sprite.center_x >= self.end_of_map:
-            # Advance to the next level
+            # Advance to the next level unless they are on level 3
             if self.level == END_OF_GAME:
                 self.congratulations_screen()
             else:
@@ -489,7 +491,9 @@ class MyGame(arcade.Window):
         arcade.draw_text("You Win!", 
         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 50, 
         arcade.color.WHITE, 26, anchor_x="center")
-        arcade.finish_render()  
+        # Finishes and Renders the screen
+        arcade.finish_render()
+        # Stays on the screen for 3 seconds  
         arcade.pause(END_PAUSE)
         # Closes the game window
         arcade.exit()
@@ -502,10 +506,12 @@ class MyGame(arcade.Window):
         arcade.set_background_color(arcade.color.BLACK)
         arcade.draw_text("Game Over", SCREEN_WIDTH / 2, 
         SCREEN_HEIGHT / 2, arcade.color.WHITE, 50, anchor_x="center")
-        arcade.draw_text("Unlucky Broski", 
+        arcade.draw_text("Better Luck Next Time", 
         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 50, 
         arcade.color.WHITE, 26, anchor_x="center")
+        # Finishes and Renders the screen
         arcade.finish_render()
+        # Stays on the screen for 3 seconds
         arcade.pause(END_PAUSE)  
         # Close the game window
         arcade.exit()
