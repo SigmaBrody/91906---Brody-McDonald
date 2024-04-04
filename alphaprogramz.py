@@ -26,7 +26,6 @@ LEFT_FACING = 1
 
 # Layer Names from our TileMap
 LAYER_NAME_PLATFORMS = "Platforms"
-LAYER_NAME_COINS = "Coins"
 LAYER_NAME_FOREGROUND = "Foreground"
 LAYER_NAME_BACKGROUND = "Background"
 LAYER_NAME_DONT_TOUCH = "Dont Touch"
@@ -49,6 +48,9 @@ CLIMBING = 4
 
 # How many lifes the player starts with
 LIVES_COUNT = 3
+
+# Game Over results
+END_OF_GAME = 3
 
 # Map Ends
 GRID_PIXEL_SIZE = SPRITE_PIXEL_SIZE * TILE_SCALING
@@ -87,7 +89,7 @@ class PlayerCharacter(arcade.Sprite):
 
         # Sets main path for smaller line lengths and its more efficent
         main_path = "./Assets/Characters/Adventurer/\
-Individual Sprites/adventurer-"
+IndividualSprites/adventurer-"
 
         # Load textures for idle standing
         self.idle_texture_pair = load_texture_pair(f"{main_path}idle-00.png")
@@ -118,7 +120,8 @@ Individual Sprites/adventurer-"
         # Figure out what way the character is facing
         if self.change_x < 0 and self.character_face_direction == RIGHT_FACING:
             self.character_face_direction = LEFT_FACING
-        elif self.change_x > 0 and self.character_face_direction == LEFT_FACING:
+        elif self.change_x > 0 and self.character_face_direction\
+            == LEFT_FACING:
             self.character_face_direction = RIGHT_FACING
 
         # Climbing animation
@@ -242,9 +245,6 @@ class MyGame(arcade.Window):
             LAYER_NAME_PLATFORMS: {
                 "use_spatial_hash": True,
             },
-            LAYER_NAME_COINS: {
-                "use_spatial_hash": True,
-            },
             LAYER_NAME_DONT_TOUCH: {
                 "use_spatial_hash": True,
             },
@@ -252,9 +252,6 @@ class MyGame(arcade.Window):
                 "use_spatial_hash": False,
             },
             LAYER_NAME_LADDERS: {
-                "use_spatial_hash": True,
-            },
-            LAYER_NAME_COINS: {
                 "use_spatial_hash": True,
             },
         }
@@ -408,6 +405,7 @@ class MyGame(arcade.Window):
         screen_center_y = self.player_sprite.center_y - (
             self.camera.viewport_height / 2)
 
+        # Centers the screen
         if screen_center_x < 0:
             screen_center_x = 0
         if screen_center_y < 0:
@@ -433,8 +431,9 @@ class MyGame(arcade.Window):
         # Update walls, used with moving platforms
         self.scene.update([LAYER_NAME_MOVING_PLATFORMS])
 
-        # Update animations
-        if self.physics_engine.is_on_ladder() and not self.physics_engine.can_jump():
+        # Update animations if on ladder
+        if self.physics_engine.is_on_ladder()\
+            and not self.physics_engine.can_jump():
             self.player_sprite.is_on_ladder = True
             self.process_keychange()
         else:
@@ -446,7 +445,7 @@ class MyGame(arcade.Window):
             delta_time, [LAYER_NAME_BACKGROUND, LAYER_NAME_PLAYER]
         )
 
-        # Did the player fall off the map?
+        # Check if player fell off the map
         if self.player_sprite.center_y < MAP_END_Y:
             self.player_sprite.center_x = PLAYER_START_X
             self.player_sprite.center_y = PLAYER_START_Y
@@ -470,7 +469,7 @@ class MyGame(arcade.Window):
         # See if the user got to the end of the level
         if self.player_sprite.center_x >= self.end_of_map:
             # Advance to the next level
-            if self.level == 3:
+            if self.level == END_OF_GAME:
                 self.congratulations_screen()
             else:
                 self.level = self.level + 1
@@ -493,7 +492,7 @@ class MyGame(arcade.Window):
         arcade.finish_render()  
         arcade.pause(END_PAUSE)
         # Closes the game window
-        arcade.close_window()
+        arcade.exit()
 
     def game_over(self):
         """
@@ -503,13 +502,13 @@ class MyGame(arcade.Window):
         arcade.set_background_color(arcade.color.BLACK)
         arcade.draw_text("Game Over", SCREEN_WIDTH / 2, 
         SCREEN_HEIGHT / 2, arcade.color.WHITE, 50, anchor_x="center")
-        arcade.draw_text("Unlucky Uso", 
+        arcade.draw_text("Unlucky Broski", 
         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 50, 
         arcade.color.WHITE, 26, anchor_x="center")
         arcade.finish_render()
         arcade.pause(END_PAUSE)  
         # Close the game window
-        arcade.close_window()
+        arcade.exit()
 
 
 def main():
