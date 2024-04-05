@@ -93,7 +93,7 @@ class PlayerCharacter(arcade.Sprite):
         main_path = "./Assets/Characters/Adventurer/\
 IndividualSprites/adventurer-"
 
-        # Load textures for idle standing
+        # Load textures for idle standing, jumping and falling
         self.idle_texture_pair = load_texture_pair(f"{main_path}idle-00.png")
         self.jump_texture_pair = load_texture_pair(f"{main_path}jump-00.png")
         self.fall_texture_pair = load_texture_pair(f"{main_path}fall-00.png")
